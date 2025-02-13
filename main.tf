@@ -1,15 +1,16 @@
 terraform {
   backend "s3" {
-    bucket         = "your-terraform-state-bucket"
-    key            = "state/terraform.tfstate"
-    region         = "us-east-2"
-    encrypt        = true
+    bucket  = "cloudapi-terraform-state"
+    key     = "state/terraform.tfstate"
+    region  = "us-east-2"
+    encrypt = true
   }
 }
 
 provider "aws" {
   region = "us-east-2"
 }
+
 
 resource "aws_dynamodb_table" "resume_table" {
   name         = "Resume"
@@ -20,47 +21,76 @@ resource "aws_dynamodb_table" "resume_table" {
     name = "Id"
     type = "S"
   }
-}
 
-resource "aws_lambda_function" "resume_lambda" {
-  filename         = "lambda_function.zip"
-  function_name    = "ResumeAPI"
-  role             = aws_iam_role.lambda_role.arn
-  handler          = "lambda_function.lambda_handler"
-  runtime          = "python3.8"
-
-  environment {
-    variables = {
-      DYNAMODB_TABLE = aws_dynamodb_table.resume_table.name
-      AWS_REGION     = "us-east-2"
-    }
+  lifecycle {
+    prevent_destroy = true   # Prevent accidental deletion
+    ignore_changes  = [name] # Ignore table recreation
   }
 }
 
-resource "aws_api_gateway_rest_api" "resume_api" {
-  name        = "ResumeAPI"
-  description = "API Gateway for Resume Data"
+
+data "aws_iam_role" "existing_lambda_role" {
+  name = "ResumeAPI-role-p6hwze50"
 }
 
-resource "aws_api_gateway_resource" "proxy" {
-  rest_api_id = aws_api_gateway_rest_api.resume_api.id
-  parent_id   = aws_api_gateway_rest_api.resume_api.root_resource_id
-  path_part   = "{proxy+}"
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_dir  = "./lambda_function"  # Package entire directory to capture changes
+  output_path = "lambda_function.zip"
 }
 
-resource "aws_api_gateway_method" "proxy_method" {
-  rest_api_id   = aws_api_gateway_rest_api.resume_api.id
-  resource_id   = aws_api_gateway_resource.proxy.id
-  http_method   = "ANY"
-  authorization = "NONE"
+
+resource "aws_lambda_function" "Resume_func" {
+  filename         = data.archive_file.lambda_zip.output_path
+  function_name    = "Resume_func"
+  role             = data.aws_iam_role.existing_lambda_role.arn
+  handler          = "lambda_function.lambda_handler"
+  runtime          = "python3.13"
+
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256  # ✅ Ensures redeployment on code change
 }
 
-resource "aws_api_gateway_integration" "proxy_integration" {
-  rest_api_id = aws_api_gateway_rest_api.resume_api.id
-  resource_id = aws_api_gateway_resource.proxy.id
-  http_method = aws_api_gateway_method.proxy_method.http_method
 
-  integration_http_method = "POST"
-  type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.resume_lambda.invoke_arn
+
+resource "aws_apigatewayv2_api" "Resume_API" {
+  name          = "Resume_API"
+  protocol_type = "HTTP"
 }
+
+resource "aws_apigatewayv2_integration" "lambda_gateway" {
+  api_id           = aws_apigatewayv2_api.Resume_API.id
+  integration_type = "AWS_PROXY"
+
+  connection_type      = "INTERNET"
+  integration_method   = "POST"
+  integration_uri      = aws_lambda_function.Resume_func.invoke_arn
+  passthrough_behavior = "WHEN_NO_MATCH"
+}
+
+
+resource "aws_apigatewayv2_route" "lambda_route" {
+  api_id    = aws_apigatewayv2_api.Resume_API.id
+  route_key = "ANY /{proxy+}" # Catch-all route
+  target    = "integrations/${aws_apigatewayv2_integration.lambda_gateway.id}"
+}
+
+resource "aws_apigatewayv2_stage" "api_stage" {
+  api_id      = aws_apigatewayv2_api.Resume_API.id
+  name        = "default"
+  auto_deploy = true
+
+  default_route_settings {
+    throttling_burst_limit = 5 # Allows a burst of 10 requests
+    throttling_rate_limit  = 2 # Limits requests to 5 per second
+  }
+}
+
+
+resource "aws_lambda_permission" "apigw_lambda" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.Resume_func.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.Resume_API.execution_arn}/*/*"
+}
+
