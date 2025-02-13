@@ -19,18 +19,12 @@ def lambda_handler(event, context):
         # Extract item while maintaining the order of fields
         item = response['Item']
         ordered_response = {
-            #"Id": item.get("Id", ""),
-            "awards": item.get("awards", []),
             "basics": item.get("basics", {}),
             "certificates": item.get("certificates", []),
             "education": item.get("education", []),
-            "interests": item.get("interests", []),
             "languages": item.get("languages", []),
             "projects": item.get("projects", []),
-            "publications": item.get("publications", []),
-            "references": item.get("references", []),
             "skills": item.get("skills", []),
-            "volunteer": item.get("volunteer", []),
             "work": item.get("work", [])
         }
 
