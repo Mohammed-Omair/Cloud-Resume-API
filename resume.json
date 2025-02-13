@@ -1,135 +1,337 @@
 {
-    "Id": 1,
-    "awards": [
-     {
-      "awarder": "Company",
-      "date": "2014-11-01",
-      "summary": "There is no spoon.",
-      "title": "Award"
-     }
-    ],
-    "basics": {
-     "email": "john@gmail.com",
-     "image": "",
-     "label": "Programmer",
-     "location": {
-      "address": "2712 Broadway St",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "postalCode": "CA 94115",
-      "region": "California"
+ "Id": {
+  "N": "1"
+ },
+ "awards": {
+  "L": [
+   {
+    "M": {
+     "awarder": {
+      "S": "Company"
      },
-     "name": "John Doe",
-     "phone": "(912) 555-4321",
-     "profiles": [
-      {
-       "network": "Twitter",
-       "url": "https://twitter.com/john",
-       "username": "john"
+     "date": {
+      "S": "2014-11-01"
+     },
+     "summary": {
+      "S": "There is no spoon."
+     },
+     "title": {
+      "S": "Award"
+     }
+    }
+   }
+  ]
+ },
+ "basics": {
+  "M": {
+   "email": {
+    "S": "john@gmail.com"
+   },
+   "image": {
+    "S": ""
+   },
+   "label": {
+    "S": "Programmer"
+   },
+   "location": {
+    "M": {
+     "address": {
+      "S": "2712 Broadway St"
+     },
+     "city": {
+      "S": "San Francisco"
+     },
+     "countryCode": {
+      "S": "US"
+     },
+     "postalCode": {
+      "S": "CA 94115"
+     },
+     "region": {
+      "S": "California"
+     }
+    }
+   },
+   "name": {
+    "S": "John Doe"
+   },
+   "phone": {
+    "S": "(912) 555-4321"
+   },
+   "profiles": {
+    "L": [
+     {
+      "M": {
+       "network": {
+        "S": "Twitter"
+       },
+       "url": {
+        "S": "https://twitter.com/john"
+       },
+       "username": {
+        "S": "john"
+       }
       }
-     ],
-     "summary": "A summary of John Doe…",
-     "url": "https://johndoe.com"
-    },
-    "certificates": [
-     {
-      "date": "2021-11-07",
-      "issuer": "Company",
-      "name": "Certificate",
-      "url": "https://certificate.com"
-     }
-    ],
-    "education": [
-     {
-      "area": "Software Development",
-      "courses": [
-       "DB1101 - Basic SQL"
-      ],
-      "endDate": "2013-01-01",
-      "institution": "University",
-      "score": "4.0",
-      "startDate": "2011-01-01",
-      "studyType": "Bachelor",
-      "url": "https://institution.com/"
-     }
-    ],
-    "interests": [
-     {
-      "keywords": [
-       "Ferrets",
-       "Unicorns"
-      ],
-      "name": "Wildlife"
-     }
-    ],
-    "languages": [
-     {
-      "fluency": "Native speaker",
-      "language": "English"
-     }
-    ],
-    "projects": [
-     {
-      "description": "Description...",
-      "endDate": "2021-01-01",
-      "highlights": [
-       "Won award at AIHacks 2016"
-      ],
-      "name": "Project",
-      "startDate": "2019-01-01",
-      "url": "https://project.com/"
-     }
-    ],
-    "publications": [
-     {
-      "name": "Publication",
-      "publisher": "Company",
-      "releaseDate": "2014-10-01",
-      "summary": "Description…",
-      "url": "https://publication.com"
-     }
-    ],
-    "references": [
-     {
-      "name": "Jane Doe",
-      "reference": "Reference…"
-     }
-    ],
-    "skills": [
-     {
-      "keywords": [
-       "HTML",
-       "CSS",
-       "JavaScript"
-      ],
-      "level": "Master",
-      "name": "Web Development"
-     }
-    ],
-    "volunteer": [
-     {
-      "endDate": "2013-01-01",
-      "highlights": [
-       "Awarded 'Volunteer of the Month'"
-      ],
-      "organization": "Organization",
-      "position": "Volunteer",
-      "startDate": "2012-01-01",
-      "summary": "Description…",
-      "url": "https://organization.com/"
-     }
-    ],
-    "work": [
-     {
-      "endDate": "2014-01-01",
-      "highlights": [
-       "Started the company"
-      ],
-      "name": "Company",
-      "position": "President",
-      "startDate": "2013-01-01",
-      "summary": "Description…",
-      "url": "https://company.com"
      }
     ]
+   },
+   "summary": {
+    "S": "A summary of John Doe…"
+   },
+   "url": {
+    "S": "https://johndoe.com"
    }
+  }
+ },
+ "certificates": {
+  "L": [
+   {
+    "M": {
+     "date": {
+      "S": "2021-11-07"
+     },
+     "issuer": {
+      "S": "Company"
+     },
+     "name": {
+      "S": "Certificate"
+     },
+     "url": {
+      "S": "https://certificate.com"
+     }
+    }
+   }
+  ]
+ },
+ "education": {
+  "L": [
+   {
+    "M": {
+     "area": {
+      "S": "Software Development"
+     },
+     "courses": {
+      "L": [
+       {
+        "S": "DB1101 - Basic SQL"
+       }
+      ]
+     },
+     "endDate": {
+      "S": "2013-01-01"
+     },
+     "institution": {
+      "S": "University"
+     },
+     "score": {
+      "S": "4.0"
+     },
+     "startDate": {
+      "S": "2011-01-01"
+     },
+     "studyType": {
+      "S": "Bachelor"
+     },
+     "url": {
+      "S": "https://institution.com/"
+     }
+    }
+   }
+  ]
+ },
+ "interests": {
+  "L": [
+   {
+    "M": {
+     "keywords": {
+      "L": [
+       {
+        "S": "Ferrets"
+       },
+       {
+        "S": "Unicorns"
+       }
+      ]
+     },
+     "name": {
+      "S": "Wildlife"
+     }
+    }
+   }
+  ]
+ },
+ "languages": {
+  "L": [
+   {
+    "M": {
+     "fluency": {
+      "S": "Native speaker"
+     },
+     "language": {
+      "S": "English"
+     }
+    }
+   }
+  ]
+ },
+ "projects": {
+  "L": [
+   {
+    "M": {
+     "description": {
+      "S": "Description..."
+     },
+     "endDate": {
+      "S": "2021-01-01"
+     },
+     "highlights": {
+      "L": [
+       {
+        "S": "Won award at AIHacks 2016"
+       }
+      ]
+     },
+     "name": {
+      "S": "Project"
+     },
+     "startDate": {
+      "S": "2019-01-01"
+     },
+     "url": {
+      "S": "https://project.com/"
+     }
+    }
+   }
+  ]
+ },
+ "publications": {
+  "L": [
+   {
+    "M": {
+     "name": {
+      "S": "Publication"
+     },
+     "publisher": {
+      "S": "Company"
+     },
+     "releaseDate": {
+      "S": "2014-10-01"
+     },
+     "summary": {
+      "S": "Description…"
+     },
+     "url": {
+      "S": "https://publication.com"
+     }
+    }
+   }
+  ]
+ },
+ "references": {
+  "L": [
+   {
+    "M": {
+     "name": {
+      "S": "Jane Doe"
+     },
+     "reference": {
+      "S": "Reference…"
+     }
+    }
+   }
+  ]
+ },
+ "skills": {
+  "L": [
+   {
+    "M": {
+     "keywords": {
+      "L": [
+       {
+        "S": "HTML"
+       },
+       {
+        "S": "CSS"
+       },
+       {
+        "S": "JavaScript"
+       }
+      ]
+     },
+     "level": {
+      "S": "Master"
+     },
+     "name": {
+      "S": "Web Development"
+     }
+    }
+   }
+  ]
+ },
+ "volunteer": {
+  "L": [
+   {
+    "M": {
+     "endDate": {
+      "S": "2013-01-01"
+     },
+     "highlights": {
+      "L": [
+       {
+        "S": "Awarded 'Volunteer of the Month'"
+       }
+      ]
+     },
+     "organization": {
+      "S": "Organization"
+     },
+     "position": {
+      "S": "Volunteer"
+     },
+     "startDate": {
+      "S": "2012-01-01"
+     },
+     "summary": {
+      "S": "Description…"
+     },
+     "url": {
+      "S": "https://organization.com/"
+     }
+    }
+   }
+  ]
+ },
+ "work": {
+  "L": [
+   {
+    "M": {
+     "endDate": {
+      "S": "2014-01-01"
+     },
+     "highlights": {
+      "L": [
+       {
+        "S": "Started the company"
+       }
+      ]
+     },
+     "name": {
+      "S": "Company"
+     },
+     "position": {
+      "S": "President"
+     },
+     "startDate": {
+      "S": "2013-01-01"
+     },
+     "summary": {
+      "S": "Description…"
+     },
+     "url": {
+      "S": "https://company.com"
+     }
+    }
+   }
+  ]
+ }
+}
