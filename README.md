@@ -15,7 +15,8 @@ This repository contains an **automated serverless API** built using **AWS Lambd
 
 ## 🏗️ Architecture  
 
-![Architecture Diagram](https://github.com/user-attachments/assets/f97b60a3-5430-48e9-9b59-e4ba9e4dc37b)
+![Architecture Diagram](https://github.com/user-attachments/assets/b56b194c-155e-442a-80b0-63a4f7337abb)
+
 
 - **AWS Lambda** → Fetches resume data from **DynamoDB**  
 - **DynamoDB** → Stores structured **resume.json** data  
