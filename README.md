@@ -34,5 +34,5 @@ This repository contains an **automated serverless API** built using **AWS Lambd
 - **AWS CLI Installed** (`aws configure` set up)  
 
 ---
-
+The full step-by-step guide can be found [here](https://www.linkedin.com/pulse/cloud-resume-api-deployment-terraform-github-actions-mohiuddin-pen3c/?trackingId=FfEnE5dySGSUepcMSfyV0Q%3D%3D)
 
