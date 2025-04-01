@@ -35,4 +35,5 @@ This repository contains an **automated serverless API** built using **AWS Lambd
 
 ---
 The full step-by-step guide can be found [here](https://www.linkedin.com/pulse/cloud-resume-api-deployment-terraform-github-actions-mohiuddin-pen3c/?trackingId=FfEnE5dySGSUepcMSfyV0Q%3D%3D)
+API URL: [https://hnrkedwr7c.execute-api.us-east-2.amazonaws.com/default/](https://hnrkedwr7c.execute-api.us-east-2.amazonaws.com/default/)
 
